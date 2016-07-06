@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(int argc, char *argv[]) {
+	
+  long array_size, i=1, *array,k,size=0, root_square, iterate=0, no_of_count=0;
+	printf("Enter the range\n");
+	scanf("%ld",&array_size);
+	
+	array = malloc(4);
+	array[0]=2;
+	k = 2;
+	
+	if ( array_size == 1)
+		printf("Please enter a number greater than 1\n");
+		
+	else{
+
+	
+			while (k <= array_size-1){
+				//printf("The value of k = %d\n",k);	
+				array = realloc(array, (k+1)*12);
+				array[i] = k+1;
+				i++;
+				k++;	
+				size++;	
+			}
+			
+			//for ( i =0; i<= size; i++)
+			  //printf("%d\t",array[i]);
+			
+			root_square = sqrt(array_size);
+			//printf("The square root is = %d\n",root_square);
+			
+			k=2; // reset the value of k to 2
+			i=0;
+			
+			while ( k <= root_square){
+				
+				while ( i <= size){
+					i += k;
+					array[i] = 0;
+					
+				}
+				
+				iterate++;
+				i = iterate;
+				//printf ( "value of i =%d\n",i);
+				k++;
+				
+			}
+			
+			printf("\n");
+			
+			printf ("the prime numbers for the range %ld  are as follows\n",array_size);
+			for ( i =0; i<= size;){
+			    
+				if ( array[i] == 0)
+				   i++;
+				else{
+					no_of_count++;
+					printf("%ld\t",array[i]);
+					i++;
+					
+				}
+				
+			
+			}
+			printf("\n");
+			printf("there are %ld prime numbers\n",no_of_count);
+  }	
+}
