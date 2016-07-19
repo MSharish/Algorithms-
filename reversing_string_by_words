@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void reverse_sentence (char * input,char * out_string,int word_count);
+int count_words( char * input);
+
+int global_count = 0;
+
+int main(int argc, char *argv[]) {
+	
+	char * input = malloc (100),*out_string;
+	int word_count = 0;
+	printf ( "Enter the string you want to reverse\n");
+	gets(input);
+	word_count= count_words(input);
+	out_string = malloc(strlen(input));
+	global_count = word_count;
+	reverse_sentence (input,out_string,word_count);
+	
+	
+}
+
+int count_words( char * input){
+	
+
+	int count = 0;
+	while ( *input != '\0'){
+		
+		if ( *input == ' '){
+			count++;
+			
+		}
+		input++;
+		
+		
+	}
+	
+	
+	return count+1;
+}
+
+void reverse_sentence (char * input,char * out_string,int word_count){
+	
+	int count, temp_count = 0,i=0, iterator=0;
+	char * temp;
+	
+		while ( word_count >= 1){
+		 
+		 temp = input;
+	     count = word_count-1;
+	     temp_count = 0;
+		 while ( temp_count != count){
+			
+			if (*temp == ' '){
+			   temp_count++;
+			   iterator++;
+	
+			}
+			
+			temp++;
+			
+			
+		 }
+		
+		if ( iterator == (global_count -1)){
+			
+			while (*temp != '\0'){
+				out_string[i++] = *temp;
+				temp++;
+			}
+			out_string[i++] = ' ';
+			
+		}
+		
+		else{
+			
+			while (*temp != ' '){
+				out_string[i++] = *temp;
+				temp++;
+			}
+			out_string[i++] = ' ';
+			
+		}
+	
+		word_count--;
+		
+	}
+	
+	printf ("outstring = %s\n",out_string);
+
+}
